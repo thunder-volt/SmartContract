@@ -60,6 +60,7 @@ function App() {
   
   return (
     <div className="center">
+    <h3>{num}</h3>
       <h3>{greeting}</h3>
       <input className="input" type="text" id="value"></input>
        <button className="button" onClick={() =>{
