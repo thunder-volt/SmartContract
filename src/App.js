@@ -38,7 +38,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem('num', count);
+    window.localStorage.setItem('num', num);
   }, [num]);
   
   
