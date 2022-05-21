@@ -7,7 +7,7 @@ function App() {
   const [greeting, doGreeting] = useState(null);
   const [contract, setContract] = useState(null);
   const [provider, setProvider] = useState(null);
-
+  const [num,setNum] = useState(1);
   useEffect(() => {
     const loadProvider = async () => {
       let contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
@@ -32,6 +32,17 @@ function App() {
     contract && getGreetings();
   }, [contract]);
 
+  
+  useEffect(() => {
+    setNum(JSON.parse(window.localStorage.getItem('num')));
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem('num', count);
+  }, [num]);
+  
+  
+  
   const changeGreetings = async () => {
     const input = document.querySelector("#value");
     const signer = contract.connect(provider.getSigner());
@@ -41,11 +52,20 @@ function App() {
     }, 500);
     setTimeout();
   };
+  
+    const incNum = () =>{
+    setNum(num+1);
+  
+  }
+  
   return (
     <div className="center">
       <h3>{greeting}</h3>
       <input className="input" type="text" id="value"></input>
-      <button className="button" onClick={changeGreetings}>
+       <button className="button" onClick={() =>{
+       changeGreetings();
+       incNum();
+      }} >
         Change
       </button>
     </div>
